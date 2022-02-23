@@ -1,83 +1,54 @@
 package oops;
 
-import java.util.Scanner;
-
 class Point {
-	public double x;
-	public double y;
-	public double length;
+	int x1;
+	int y1;
+	int x2;
+	int y2;
 
-	public double getX() {
-		return x;
+	public void Points(int x1, int y1, int x2, int y2) {
+
+		this.x1 = x1;
+		this.y1 = y1;
+		this.x2 = x2;
+		this.y2 = y2;
 	}
 
-	public void setX(double x) {
-		this.x = x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
 }
 
 public class LineComparision {
-	static void lineCheckEquality() {
-		double lineLength1 = lineLength();
-		double lineLength2 = lineLength();
-
-		if (lineLength1 == lineLength2) {
-			System.out.println("equal");
-		} else {
-			System.out.println("not equal");
-		}
-	}
-
-	static void compareLine() {
-		double lineLength1 = lineLength();
-		double lineLength2 = lineLength();
-		if (lineLength1 == lineLength2) {
-			System.out.println("Length of line 1 is equal to Length of line 2");
-		} else if (lineLength1 > lineLength2) {
-			System.out.println("Length of line 1 is greater than Length of line 2");
-		} else {
-			System.out.println("Length of line 2 is greater than Length of line 1");
-		}
-	}
-
-	public static double lineLength() {
-
-		Point point = new Point();
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter the value of X1");
-
-		point.setX((scanner.nextInt()));
-		double x1 = point.getX();
-		System.out.println("Enter the value of X2");
-
-		point.setX((scanner.nextInt()));
-		double x2 = point.getX();
-		System.out.println("Enter the value of Y1");
-
-		point.setY((scanner.nextInt()));
-		double y1 = point.getY();
-		System.out.println("Enter the value of Y2");
-
-		point.setY((scanner.nextInt()));
-		double y2 = point.getY();
-		double x = Math.pow((x1 - x2), 2);
-		double y = Math.pow((y1 - y2), 2);
-		double length = Math.sqrt(x + y);
-
-		return length;
-
-	}
-
 	public static void main(String[] args) {
-		System.out.println("Welcome to Line Comparison Computation Program using OOPS");
-		compareLine();
+		System.out.println("Welcome to Line\r\n" + "Comparison Computation\r\n" + "Program on Master Branch");
+		Points points_1 = new Points(1, 2, 5, 8);
+		Points points_2 = new Points(1, 2, 3, 4);
+		LineComparision lineComp = new LineComparision();
+		int line1Length = lineComp.lineLengthCal(points_1.x1, points_1.x2, points_1.y1, points_1.y2);
+		int line2Length = lineComp.lineLengthCal(points_2.x1, points_2.x2, points_2.y1, points_2.y2);
+		lineComp.compareLine(line1Length, line2Length);
+
 	}
+
+	public int lineLengthCal(int x1, int y1, int x2, int y2) {
+		int lineLength = (int) Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+		return lineLength;
+	}
+
+	public void equalityCheck(int line1Length, int line2Length) {
+		if (line1Length == line2Length) {
+			System.out.println("Two lines are equal");
+		} else {
+			System.out.println("Two lines are not equal");
+		}
+	}
+
+	static void compareLine(int line1Length, int line2Length) {
+		if (line1Length == line2Length) {
+			System.out.println("Line 1 is equal to Line 2");
+		} else if (line1Length > line2Length) {
+			System.out.println("Line 1 is greater than to Line 2");
+		} else {
+			System.out.println("Line 2 is greater than to Line 1");
+		}
+	}
+
 }
